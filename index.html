@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แนะนำประเทศอิตาลี (Italy Travel Guide)</title>
+    <style>
+        /* ตั้งค่าฟอนต์และการรีเซ็ตหน้าจอ */
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght=300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Kanit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* 1. แถบเมนูด้านบน (Navigation Bar) */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4a4a4a;
+            font-weight: 600;
+            margin: 0 20px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #008c45; /* สีเขียวธงชาติอิตาลี */
+        }
+
+        /* โครงสร้างการแบ่งเนื้อหาเป็นหน้าๆ (Full Screen Sections) */
+        section {
+            width: 100%;
+            height: 100vh; /* บังคับให้สูงเต็มหน้าจอพอดี */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 40px 40px 40px;
+            position: relative;
+        }
+
+        /* สลับสีพื้นหลังแต่ละหน้าเพื่อให้ดูมีมิติ */
+        #home { background-color: #fff; }
+        #attractions { background-color: #f1f3f5; }
+        #food-culture { background-color: #fff; }
+        #about { background-color: #f8f9fa; }
+
+        /* ส่วนหัวข้อของแต่ละ หน้า (Section Title) */
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: #cd212a; /* สีแดงธงชาติอิตาลี */
+            border-radius: 2px;
+        }
+
+        /* 2. หน้าแรก (Home) */
+        .hero-banner {
+            width: 100%;
+            max-width: 1200px;
+            height: 80%;
+            background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('Gemini_Generated_Image_ege18iege18iege1.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero-banner h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .hero-banner p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            padding: 0 20px;
+            line-height: 1.8;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        /* ส่วนเล่นไฟล์เสียง MP3 บรรยาย */
+        .mp3-player-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 2px solid #008c45;
+        }
+
+        .mp3-player-card span {
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-shadow: none;
+        }
+
+        .mp3-player-card audio {
+            height: 35px;
+            outline: none;
+        }
+
+        /* 3. หน้าสถานที่ท่องเที่ยว (Attractions) */
+        .postcard-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .postcard {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .postcard:hover {
+            transform: translateY(-8px);
+        }
+
+        .postcard-img {
+            width: 100%;
+            height: 40%;
+            object-fit: cover;
+        }
+
+        .postcard-content {
+            padding: 20px;
+            height: 60%;
+        }
+
+        .postcard-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #008c45;
+        }
+
+        .postcard-content p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #555;
+            text-align: justify;
+        }
+
+        /* 4. หน้าอาหารและวัฒนธรรม (Food & Culture) */
+        .food-culture-wrapper {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 75%;
+        }
+
+        .food-section h3, .culture-section h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .food-item {
+            text-align: center;
+            padding: 15px;
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .food-item img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .food-item h4 {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #cd212a;
+        }
+
+        .culture-box h4 {
+            color: #cd212a;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .culture-box p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* 5. หน้าผู้จัดทำ (About Me) */
+        .about-card {
+            background: white;
+            width: 100%;
+            max-width: 650px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            padding: 40px;
+            gap: 40px;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #008c45;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .profile-info p {
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            color: #4a4a4a;
+        }
+
+        .profile-info strong {
+            color: #111;
+        }
+
+        /* เครื่องเล่นเพลง Spotify ลอยด้านขวามือ */
+        .music-widget {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        .toggle-music-btn {
+            background-color: #008c45;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .toggle-music-btn:hover {
+            background-color: #006633;
+            transform: scale(1.05);
+        }
+
+        .music-player-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 5px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            backdrop-filter: blur(5px);
+            border: 2px solid #cd212a;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+            width: 310px;
+            height: 162px;
+        }
+
+        .music-player-container.hide {
+            opacity: 0;
+            transform: translateY(20px);
+            visibility: hidden;
+            pointer-events: none;
+            height: 0;
+            padding: 0;
+            border: none;
+        }
+
+        /* Responsive สำหรับมือถือ */
+        @media (max-width: 992px) {
+            section {
+                height: auto;
+                padding: 100px 20px 40px 20px;
+            }
+            .hero-banner { height: auto; padding: 40px 20px; }
+            .hero-banner h1 { font-size: 2.5rem; }
+            .postcard-container, .food-grid, .culture-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px;
+            }
+            .music-widget {
+                right: 15px;
+                bottom: 15px;
+            }
+            .mp3-player-card {
+                flex-direction: column;
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#home">หน้าแรก</a>
+            <a href="#attractions">สถานที่ท่องเที่ยว</a>
+            <a href="#food-culture">อาหารและวัฒนธรรม</a>
+            <a href="#about">ผู้จัดทำ</a>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="hero-banner">
+            <h1>Welcome to Italy</h1>
+            <p>ประเทศอิตาลีเป็นประเทศที่มีความโดดเด่นด้านวัฒนธรรม เทคโนโลยี และสถานที่ท่องเที่ยวที่สวยงาม ผสมผสานประวัติศาสตร์อันยาวนานของจักรวรรดิโรมันเข้ากับศิลปะยุคเรเนสซองส์และแฟชั่นระดับโลกได้อย่างน่าหลงใหล</p>
+            
+            <div class="mp3-player-card">
+                <span>🔊 ฟังเสียงบรรยาย (MP3):</span>
+                <audio controls>
+                    <source src="The Most Popular Italian Pizza Music_ Italian Tarantella _ Background Music For Food Videos.mp3" type="audio/mpeg">
+                    เบราว์เซอร์ของคุณไม่รองรับการเล่นไฟล์เสียง
+                </audio>
+            </div>
+        </div>
+    </section>
+
+    <section id="attractions">
+        <h2 class="section-title">สถานที่ท่องเที่ยวน่าสนใจ</h2>
+        <div class="postcard-container">
+            
+            <div class="postcard">
+                <img class="postcard-img" src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=500&q=80" alt="โคลอสเซียม">
+                <div class="postcard-content">
+                    <h3>โคลอสเซียม (Colosseum)</h3>
+                    <p>โคลอสเซียมเป็นหนึ่งในสิ่งมหัศจรรย์ของโลกยุคใหม่ตั้งอยู่ในกรุงโรม<br>
+                    สนามกีฬาอัฒจันทร์โบราณขนาดใหญ่ยักษ์นี้สร้างขึ้นในสมัยจักรวรรดิโรมัน<br>
+                    ในอดีตใช้เป็นลานประลองของเหล่านักรบกลาดิเอเตอร์และสัตว์ป่าดุร้าย<br>
+                    โครงสร้างสถาปัตยกรรมทำจากอิฐและหินปูนแสดงถึงความสามารถเชิงวิศวกรรมขั้นสูง<br>
+                    ปัจจุบันเป็นแลนด์มาร์คหลักที่ดึงดูดนักท่องเที่ยวจากทั่วโลกให้มาเยือน</p>
+                </div>
+            </div>
+
+            <div class="postcard">
+                <img class="postcard-img" src="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?auto=format&fit=crop&w=500&q=80" alt="เมืองเวนิส">
+                <div class="postcard-content">
+                    <h3>เมืองเวนิส (Venice)</h3>
+                    <p>เวนิสได้รับฉายาว่าเป็นเมืองแห่งสายน้ำและเป็นเมืองที่โรแมนติกที่สุดแห่งหนึ่ง<br>
+                    ตัวเมืองสร้างขึ้นจากการเชื่อมเกาะเล็กๆ จำนวนมากเข้าด้วยกันในอ่าวเวนิส<br>
+                    ผู้คนและนักท่องเที่ยวจะสัญจรไปมาด้วยการเดินเท้าหรือใช้เรือเป็นหลัก<br>
+                    กิจกรรมยอดนิยมคือการนั่งเรือกอนโดลาล่องไปตามลำคลองเพื่อชมสถาปัตยกรรมโบราณ<br>
+                    รวมถึงการแวะเช็กอินที่จัตุรัสซานมาร์โกอันเป็นหัวใจหลักของเมือง</p>
+                </div>
+            </div>
+
+            <div class="postcard">
+                <img class="postcard-img" src="https://images.unsplash.com/photo-1543051932-6ef9fecfbc80?auto=format&fit=crop&w=500&q=80" alt="หอเอนเมืองปิซา">
+                <div class="postcard-content">
+                    <h3>หอเอนเมืองปิซา (Leaning Tower of Pisa)</h3>
+                    <p>หอเอนเมืองปิซาคือหอระฆังคอนกรีตหินอ่อนสีขาวตั้งอยู่ที่แคว้นทัสคานี<br>
+                    เริ่มก่อสร้างขึ้นเมื่อศตวรรษที่ 12 และเกิดการทรุดตัวของชั้นดินทำให้หอเริ่มเอียง<br>
+                    แม้จะเอียงแต่โครงสร้างก็ยังคงสมดุลและไม่ล้มลงมาจนกลายเป็นความมหัศจรรย์<br>
+                    นักท่องเที่ยวจากทั่วทุกมุมโลกมักเดินทางมาถ่ายภาพในท่าทางสนุกๆ ร่วมกับหอเอนนี้<br>
+                    นอกจากนี้ยังได้รับการขึ้นทะเบียนเป็นมรดกโลกโดยองค์การยูเนสโกเรียบร้อยแล้ว</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="food-culture">
+        <h2 class="section-title">อาหารและวัฒนธรรม</h2>
+        <div class="food-culture-wrapper">
+            
+            <div class="food-section">
+                <h3>อาหารขึ้นชื่อ (Famous Food)</h3>
+                <div class="food-grid">
+                    <div class="food-item">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80" alt="พิซซ่า">
+                        <h4>พิซซ่า (Pizza)</h4>
+                    </div>
+                    <div class="food-item">
+                        <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=400&q=80" alt="พาสต้า">
+                        <h4>พาสต้า (Pasta)</h4>
+                    </div>
+                    <div class="food-item">
+                        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=400&q=80" alt="เจลาโต้">
+                        <h4>เจลาโต้ (Gelato)</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="culture-section">
+                <h3>วัฒนธรรมและเทศกาลสำคัญ</h3>
+                <div class="culture-grid">
+                    <div class="culture-box">
+                        <h4>วัฒนธรรมที่น่าสนใจ (Culture)</h4>
+                        <p>ภาษาท่าทาง (Hand Gestures) ที่โดดเด่นในการสื่อสาร, วัฒนธรรมการดื่มเอสเพรสโซ่แบบยืนที่บาร์, และวิถีชีวิตแบบ "Dolce Far Niente" หรือศิลปะแห่งการปล่อยใจให้มีความสุขกับการอยู่เฉยๆ</p>
+                    </div>
+                    <div class="culture-box">
+                        <h4>เทศกาลสำคัญ (Festivals)</h4>
+                        <p><strong>เทศกาลคาร์นิวัลแห่งเวนิส:</strong> เทศกาลหน้ากากสุดวิจิตรตระการตาและชุดแต่งกายย้อนยุคอันหรูหรา<br>
+                        <strong>เทศกาลแข่งม้าปาลีโอ:</strong> การแข่งม้าประวัติศาสตร์สุดดุเดือด ณ เมืองซีเอนา</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">ผู้จัดทำ</h2>
+        <div class="about-card">
+            <img class="profile-img" src="30536.jpg" alt="รูปภาพผู้จัดทำ">
+            <div class="profile-info">
+                <p><strong>ชื่อ-นามสกุล:</strong> ธนกฤต อ่อนทรชุน</p>
+                <p><strong>ระดับชั้น:</strong> (ปวช. 2/10)</p>
+                <p><strong>สาขาวิชา:</strong> เทคโนโลยีสารสนเทศ (IT)</p>
+                <p><strong>วิทยาลัย:</strong> วิทยาลัยเทคโนโลยีการจัดการเพชรเกษม</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMusicWidget() {
+            var player = document.getElementById("playerContainer");
+            player.classList.toggle("hide");
+        }
+    </script>
+
+</body>
+</html>
